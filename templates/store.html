@@ -1,0 +1,28 @@
+{{#items}}
+<div class="panel panel-default col-md-3 panel-transparent">
+    <div class="panel-heading centered">{{name}}</div>
+    <div class="panel-body">
+        <p>
+            Type: {{type.name}}
+        </p>
+        <p>
+            Attack points: {{attackPoints}}
+        </p>
+        <p>
+            Defense points: {{defensePoints}}
+        </p>
+        <p>
+            Life points: {{lifePoints}}
+        </p>
+        <p>
+            <button class="buy btn btn-md btn-default" data-id="{{_id}}" data-type="{{type.name}}"><span
+                    class="glyphicon glyphicon-shopping-cart"></span> BUY
+            </button>
+        </p>
+    </div>
+</div>
+{{/items}}
+
+
+
+
