@@ -14,8 +14,7 @@ html {
 body {
     padding: 0;
     font-family: siteHeader, Helvetica;
-    /*font-size: 15px;*/
-    color: #dbc59e;
+    color: saddlebrown;
     background: url("../imgs/background.jpg");
 }
 
@@ -53,6 +52,10 @@ header {
 header > nav > ul {
     list-style: none;
     display: inline-block;
+}
+
+a{
+    color: peru;
 }
 
 li.nav-button {
@@ -105,10 +108,10 @@ li.nav-button > a {
 #container > section > div {
     padding: 2%;
     vertical-align: top;
-    font-size: 1.5rem;
+    font-size: 2rem;
     box-shadow: 1px 1px 1px 1px #4f575f;
-    border: solid 1px #000;
-    background: #ffffff;
+    border: solid 1px saddlebrown;
+    background: #dbc59e;
 }
 
 .login-form, .register-form, .welcome-message {
@@ -233,23 +236,6 @@ label {
     border: 2px solid saddlebrown;
 }
 
-.item-type, .item-name {
-    /*color: black;*/
-}
-
-
-
-/*#store-item{*/
-    /*border-style: solid;*/
-    /*border-width: 1px;*/
-    /*border-color: black;*/
-/*}*/
-
-/*#store h3 {*/
-    /*color: black;*/
-    /*font-family: siteHeader, Helvetica;*/
-/*}*/
-
 #no-heroes-panel {
     padding: 15px;
 }
@@ -270,3 +256,28 @@ label {
     color: white;
     font-weight: bold;
 }
+
+#login-form, #register-form{
+    color: saddlebrown;
+    background-color: #dbc59e;
+    padding-bottom: 20px;
+}
+
+.main-header{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.form-group{
+    padding-top: 20px;
+}
+
+#login-form-btns, #register-form-btns{
+    padding-top: 20px;
+}
+
+
+.form-control::-webkit-input-placeholder { color: #dbc59e; }
+.form-control:-moz-placeholder { color: #dbc59e; }
+.form-control::-moz-placeholder { color: #dbc59e; }
+.form-control:-ms-input-placeholder { color: #dbc59e;}

@@ -1,16 +1,22 @@
-<section>
-    <div class="login-form">
-        <header class="main-header">Login</header>
-        <div class="data">
-            <label for="username">Username:</label>
-            <input type="text" id="username" placeholder="Username..."/>
-            <label for="password">Password:</label>
-            <input type="password" id="password" placeholder="Password..."/>
+<section class="col-md-6 col-md-offset-3">
+    <form class="form-horizontal" id="login-form">
+        <header class="main-header">SIGN IN</header>
+        <div class="form-group">
+            <label for="username" class="col-md-4 control-label">Username</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="username" placeholder="Username...">
+            </div>
         </div>
-        <div class="panel">
-            <button id="login-button" class="button">Login</button>
+        <div class="form-group">
+            <label for="password" class="col-md-4 control-label">Password</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="password" placeholder="Password...">
+            </div>
+        </div>
+        <div class="centered" id="login-form-btns">
+            <button id="login-button" class="button btn-default centered">Login</button>
             <span>or</span>
             <a href="#/register/">Register</a>
         </div>
-    </div>
+    </form>
 </section>
