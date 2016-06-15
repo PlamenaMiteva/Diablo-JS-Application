@@ -18,15 +18,18 @@ app.userController = (function () {
                 sessionStorage['userId'] = success._id;
 
                 var message = "You have been successfully logged in the system";
-                Notify(message);
+                var type = 'success';
+                Notify(message, type);
 
                 Sammy(function () {
                     this.trigger('redirectUrl', {url: '#/home/'});
-                })
+                });                
+
             }, function (error) {
                 var response = jQuery.parseJSON(error.responseText);
                 var message = response.description;
-                Notify(message);
+                var type = 'error';
+                Notify(message, type);
             }).done();
     };
 
@@ -37,7 +40,8 @@ app.userController = (function () {
     UserController.prototype.register = function (data) {
         if (data.password != data.confirmPassword) {
             var message = "Sorry, the passwords you entered do not match. Please try again.";
-            Notify(message);
+            var type = 'error';
+            Notify(message, type);
         }else {
             return this.model.register(data)
                 .then(function (success) {
@@ -46,7 +50,8 @@ app.userController = (function () {
                     sessionStorage['userId'] = success._id;
 
                     var message = "You have been successfully registered in the system";
-                    Notify(message);
+                    var type = 'success';
+                    Notify(message, type);
 
 
                     Sammy(function () {
@@ -55,7 +60,8 @@ app.userController = (function () {
                 }, function (error) {
                     var response = jQuery.parseJSON(error.responseText);
                     var message = response.description;
-                    Notify(message);
+                    var type = 'error';
+                    Notify(message, type);
                 }).done();
         }
     };
@@ -66,7 +72,8 @@ app.userController = (function () {
                 sessionStorage.clear();
 
                 var message = "You have been successfully logged out from the system";
-                Notify(message);
+                var type = 'success';
+                Notify(message, type);
 
                 Sammy(function () {
                     this.trigger('redirectUrl', {url: '#/'});
@@ -74,15 +81,18 @@ app.userController = (function () {
             }, function (error) {
                 var response = jQuery.parseJSON(error.responseText);
                 var message = response.description;
-                Notify(message);
+                var type = 'error';
+                Notify(message, type);
             }).done();
     };
 
-    function Notify(message) {
-        $('#notification_placeholder').html('<div class="alert"><a class="close" data-dismiss="alert">X</a><span>' + message + '</span></div>');
-        setTimeout(function () {
-            document.getElementById('notification_placeholder').innerHTML = '';
-        }, 2000);
+    function Notify(message, type) {
+        noty({
+            text: message,
+            layout: 'topRight',
+            closeWith: ['click', 'hover'],
+            type: type
+        });
     };
 
 

@@ -2,6 +2,7 @@ var app = app || {};
 
 (function () {
     var router = Sammy(function () {
+        var currentLocation = window.location.pathname;
         var selector = '#container';
         var requester = app.requester.load('kid_ZJU1WAE3GW', 'a317aeba877b4197a9c687155fd2a5c8', 'https://baas.kinvey.com/');
 
@@ -22,6 +23,7 @@ var app = app || {};
                 return false;
             }
         });
+
 
         this.before(function() {
             if(!sessionStorage['sessionId']) {
@@ -76,7 +78,7 @@ var app = app || {};
         });
 
         this.bind('redirectUrl', function(ev, data) {
-            this.redirect(data.url);
+            this.redirect(currentLocation + data.url);
         });
 
         this.bind('login', function(ev, data) {

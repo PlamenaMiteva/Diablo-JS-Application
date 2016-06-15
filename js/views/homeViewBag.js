@@ -8,7 +8,7 @@ app.homeViewBag = (function () {
     }
 
     function showHomePage(selector, data) {
-        $.get('templates/welcome-user.html', function(templ) {
+        $.get('templates/welcome-user.html', function (templ) {
             var renderedData = Mustache.render(templ, data);
             $(selector).html(renderedData);
         })

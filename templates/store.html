@@ -1,18 +1,19 @@
-{{#items}}
+<div class="col-md-12 col-md-offset-1">
+    {{#items}}
 <div class="panel panel-default col-md-3 panel-transparent">
-    <div class="panel-heading centered">{{name}}</div>
+    <div class="panel-heading centered"> <span class="glyphicon glyphicon-star"> {{name}}</span></div>
     <div class="panel-body">
         <p>
-            Type: {{type.name}}
+            Type: <span class="badge">{{type.name}}</span>
         </p>
         <p>
-            Attack points: {{attackPoints}}
+            Attack points: <span class="badge">{{attackPoints}}</span>
         </p>
         <p>
-            Defense points: {{defensePoints}}
+            Defense points: <span class="badge">{{defensePoints}}</span>
         </p>
         <p>
-            Life points: {{lifePoints}}
+            Life points: <span class="badge">{{lifePoints}}</span>
         </p>
         <p>
             <button class="buy btn btn-md btn-default" data-id="{{_id}}" data-type="{{type.name}}"><span
@@ -22,6 +23,7 @@
     </div>
 </div>
 {{/items}}
+</div>
 
 
 

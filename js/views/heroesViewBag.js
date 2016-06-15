@@ -35,8 +35,12 @@ app.heroesViewBag = function () {
                     this.trigger('addHero', {name: name, classId: classId});
                 })
             })
+
             $('#cancel-btn').on('click', function () {
                 $('#add-hero-form').find('input').not(':button, :submit, :reset, :hidden').val('');
+                $("#add-hero-form").find('input:radio').attr('selected', '-1');
+                console.log($("#add-hero-form").find('input:radio'))
+                console.log($("#add-hero-form").find('input:radio').attr('selected'))
             })
         })
     }
@@ -54,6 +58,7 @@ app.heroesViewBag = function () {
                 Sammy(function () {
                     this.trigger('addItem', {itemId: itemId, itemType: itemType, heroId: heroId});
                 })
+
             })
         });
     }

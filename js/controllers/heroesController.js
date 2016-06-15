@@ -46,12 +46,27 @@ app.heroesController = (function () {
                 var result = {
                     imageUrl: imageUrl,
                     name: data.name,
-                    attackPoints: data['attack-points'],
-                    defensePoints: data['defense-points'],
-                    lifePoints: data['life-points'],
+                    attackPoints: data.class['attack-points'],
+                    defensePoints: data.class['defense-points'],
+                    lifePoints: data.class['life-points'],
+                    items: [],
                     _id: data._id
                 };
-
+               
+                if(data.items !=undefined) {
+                    data.items.forEach(function (item) {
+                        result.attackPoints += item['attack-points'];
+                        result.defensePoints += item['defense-points'];
+                        result.lifePoints += item['life-points'];
+                        result.items.push({
+                            name: item.name,
+                            type: item.type.name,
+                            attackPoints: item['attack-points'],
+                            defensePoints: item['defense-points'],
+                            lifePoints: item['life-points']
+                        })
+                    });
+                }
                 _this.viewBag.showHeroDetails(selector, result);
             })
     };
@@ -59,10 +74,8 @@ app.heroesController = (function () {
 
     HeroesController.prototype.loadAddHero = function (selector) {
         var _this = this;
-        console.log("hello");
         this.model.listClasses()
             .then(function (data) {
-                console.log(data)
                 var result = {
                     classes: []
                 };
@@ -94,14 +107,16 @@ app.heroesController = (function () {
         this.model.addHero(result)
             .then(function (success) {
                 var message = "You have successfully added a new hero";
-                Notify(message);
+                var type = 'success';
+                Notify(message, type);
                 Sammy(function () {
                     this.trigger('redirectUrl', {url: '#/heroes/list/'});
                 });
             }, function (error) {
                 var response = jQuery.parseJSON(error.responseText);
                 var message = response.description;
-                Notify(message);
+                var type = 'error';
+                Notify(message, type);
             }).done();
     };
 
@@ -157,7 +172,8 @@ app.heroesController = (function () {
                    heroData.items.forEach(function (item) {
                        if (item.type.name == data.itemType) {
                            var message = "You already have an item of this type, which will be thrown away in case you proceed with the purchase.";
-                           Notify(message);
+                           var type = 'warning';
+                           Notify(message, type);
                            result.items.push({
                                _type: "KinveyRef",
                                _id: data.itemId,
@@ -191,21 +207,25 @@ app.heroesController = (function () {
             _this.model.editHero(updatedItem.heroId, updatedItem.result)
                 .then(function (success) {
                     var message = "You have bought a new item";
-                    Notify(message);
+                    var type = 'success';
+                    Notify(message, type);
                 }, function (error) {
                     var response = jQuery.parseJSON(error.responseText);
                     var message = response.description;
-                    Notify(message);
+                    var type = 'error';
+                    Notify(message, type);
                 }).done();
              });
     };
 
 
-    function Notify(message) {
-        $('#notification_placeholder').html('<div class="alert"><a class="close" data-dismiss="alert">X</a><span>' + message + '</span></div>');
-        setTimeout(function () {
-            document.getElementById('notification_placeholder').innerHTML = '';
-        }, 2000);
+    function Notify(message, type) {
+        noty({
+            text: message,
+            layout: 'topRight',
+            closeWith: ['click', 'hover'],
+            type: type
+        });
     };
 
     return {

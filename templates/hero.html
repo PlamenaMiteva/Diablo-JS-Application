@@ -1,44 +1,47 @@
-<div id="hero-detailed" class="row">
-    <div class="col-md-4">
-        <img src="{{imageUrl}}" alt="hero-image" class="hero-image"/><br>
-
-        <h2>{{name}}</h2>
-
-        <p>
-            Attack points: {{attackPoints}}
-        </p>
-
-        <p>
-            Defense points: {{defensePoints}}
-        </p>
-
-        <p>
-            Life: {{lifePoints}}
-        </p>
-        <p>
-            <a href="#/hero/{{_id}}/store" class="btn btn-md btn-default">Store</a>
-        </p>
-    </div>
-    <div class="col-md-8">
-        <div class="row">
-            {{#items}}
-            <div class="col-md-3">
-                <h4 class="item-type">{{type}}</h4>
-                <span class="item-name">{{name}}</span>
-
+<div id="hero-detailed" class="container-fluid col-md-6 col-md-offset-3">
+    <div class="container" id="hero-media">
+        <div class="media">
+            <a class="media-left media-bottom" href="#">
+                <img class="pull-left" src="{{imageUrl}}" alt="hero-image">
+            </a>
+            <div class="media-body">
+                <h2 class="media-heading">{{name}}</h2>
                 <p>
-                    Attack points: {{attackPoints}}
+                Attack points: <span class="badge">{{attackPoints}}</span>
                 </p>
-
                 <p>
-                    Defense points: {{defensePoints}}
+                Defense points: <span class="badge">{{defensePoints}}</span>
                 </p>
-
                 <p>
-                    Life points: {{lifePoints}}
+                Life: <span class="badge">{{lifePoints}}</span>
+                </p>
+                <p id="store-btn">
+                <a href="#/hero/{{_id}}/store" class="btn btn-md btn-default">Store</a>
                 </p>
             </div>
-            {{/items}}
         </div>
     </div>
-</div>
+    {{#items.length}}
+    <div class="row"><h2 class="centered">ITEMS</h2></div>
+    {{/items.length}}
+    <div class="row">
+    {{#items}}
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="hero-item">
+            <div id="item-info">
+            <h3 class="item-name centered">{{name}}</h3>
+            <p>Type: <span class="badge">{{type}}</span></p>
+            <p>
+                Attack points: <span class="badge">{{attackPoints}}</span>
+            </p>
+            <p>
+                Defense points: <span class="badge">{{defensePoints}}</span>
+            </p>
+            <p>
+                Life points: <span class="badge">{{lifePoints}}</span>
+            </p>
+        </div>
+        </div>
+        {{/items}}
+    </div>
+
+
